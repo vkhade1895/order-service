@@ -1,5 +1,6 @@
 package com.example.order.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty("customerName")
     private String customerName;
     @Enumerated(EnumType.STRING)
     private OrderStatuses orderStatus;
@@ -49,5 +51,16 @@ public class Order {
 
     public List<OrderItems> getOrderItemsList() {
         return orderItemsList;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", customerName='" + customerName + '\'' +
+                ", orderStatus=" + orderStatus +
+                ", localDateTime=" + localDateTime +
+                ", orderItemsList=" + orderItemsList +
+                '}';
     }
 }
