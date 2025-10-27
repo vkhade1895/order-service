@@ -1,6 +1,7 @@
 package com.example.order.controller;
 
 import com.example.order.model.Order;
+import com.example.order.model.OrderStatuses;
 import com.example.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class OrderController {
 
     @GetMapping
     public List<Order> getAllOrders(){
-       return orderService.getOrders();
+        return orderService.getOrders();
     }
 
     @GetMapping("/{id}")
@@ -32,6 +33,18 @@ public class OrderController {
     public ResponseEntity<Order> createOrder(@RequestBody Order order){
         Order savedOrder=orderService.createOrder(order);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Order> cancelOrder(@PathVariable("id") Long id){
+        Order order = orderService.cancelOrder(id);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Order> updateOrder(@PathVariable("id") Long id, @RequestParam OrderStatuses orderStatuses){
+        Order order = orderService.updateOrderStatusFromUser(id, orderStatuses);
+        return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
 }

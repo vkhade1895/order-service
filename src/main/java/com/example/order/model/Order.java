@@ -25,14 +25,6 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, String customerName, OrderStatuses orderStatus, LocalDateTime localDateTime, List<OrderItems> orderItemsList) {
-        this.id = id;
-        this.customerName = customerName;
-        this.orderStatus = orderStatus;
-        this.localDateTime = localDateTime;
-        this.orderItemsList = orderItemsList;
-    }
-
     public Long getId() {
         return id;
     }
@@ -51,6 +43,10 @@ public class Order {
 
     public List<OrderItems> getOrderItemsList() {
         return orderItemsList;
+    }
+
+    public void setOrderStatus(OrderStatuses orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     @Override
