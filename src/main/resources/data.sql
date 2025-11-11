@@ -1,20 +1,20 @@
 ---- Create orders table
---CREATE TABLE IF NOT EXISTS orders (
---    id BIGINT AUTO_INCREMENT PRIMARY KEY,
---    customer_name VARCHAR(255),
---    order_status VARCHAR(50),
---    local_date_time TIMESTAMP
---);
+CREATE TABLE IF NOT EXISTS orders (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    order_status VARCHAR(50),
+    local_date_time TIMESTAMP
+);
 --
 ---- Create order_items table
---CREATE TABLE IF NOT EXISTS order_items (
---    id BIGINT AUTO_INCREMENT PRIMARY KEY,
---    product_name VARCHAR(255),
---    quantity INT,
---    price DOUBLE,
---    order_id BIGINT,
---    FOREIGN KEY (order_id) REFERENCES orders(id)
---);
+CREATE TABLE IF NOT EXISTS order_items (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255),
+    quantity INT,
+    price DOUBLE,
+    order_id BIGINT,
+    FOREIGN KEY (order_id) REFERENCES orders(id)
+);
 
 -- Insert dummy data into the orders table
 INSERT INTO orders (customer_name, order_status, local_date_time) VALUES
